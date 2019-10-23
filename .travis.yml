@@ -28,7 +28,7 @@ before_install:
   - sudo add-apt-repository --yes ppa:ubuntu-toolchain-r/test
   - sudo apt-get update -qq
   # boost
-  - sudo add-apt-repository ppa:apokluda/boost1.53 --yes
+  - sudo add-apt-repository ppa:mhier/libboost-latest --yes
   - sudo apt-get update
 install: 
   # C++17
