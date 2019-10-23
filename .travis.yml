@@ -6,12 +6,8 @@ branches:
 
 addons:
   apt:
-    sources:
-      - sourceline: 'ppa:mhier/libboost-latest'
-       - ubuntu-toolchain-r-test
     packages:
       - doxygen
-      - boost1.67
 
 before_script:
 - sudo apt-get install libgtest-dev
@@ -31,11 +27,17 @@ before_install:
   # C++17
   - sudo add-apt-repository --yes ppa:ubuntu-toolchain-r/test
   - sudo apt-get update -qq
+  # boost
+  - sudo add-apt-repository ppa:apokluda/boost1.53 --yes
+  - sudo apt-get update
 install: 
   # C++17
   - sudo apt-get install -qq g++-6
   - sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-6 90
   - sudo apt-get install graphviz
+  - sudo apt-get install libboost-system1.53-dev
+  - sudo apt-get install libboost-regex1.53-dev
+  - sudo apt-get install libboost-filesystem1.53-dev
 script:
 - cmake .
 - cmake --build .
