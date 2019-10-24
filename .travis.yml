@@ -60,9 +60,6 @@ install:
   - sudo apt-get install -qq g++-6
   - sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-6 90
   - sudo apt-get install graphviz
-  - sudo apt-get install libboost-system1.53-dev
-  - sudo apt-get install libboost-regex1.53-dev
-  - sudo apt-get install libboost-filesystem1.53-dev
 script:
 - cmake .
 - cmake --build .
