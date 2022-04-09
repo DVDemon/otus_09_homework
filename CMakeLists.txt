@@ -7,30 +7,21 @@ else()
 endif()
 
 
-find_package(Boost COMPONENTS filesystem system program_options regex REQUIRED)
-include_directories(${Boost_INCLUDE_DIR})
-
-find_package(GTest REQUIRED)
+include_directories(/usr/local/include)
+link_directories(/usr/local/lib)
 find_package(Threads)
-include_directories(${GTEST_INCLUDE_DIRS})
 
-add_executable(bayan main.cpp)
-add_library(library config.cpp processor.cpp)
-add_executable(gtests tests.cpp)
 
-set_target_properties(bayan library gtests PROPERTIES
+add_executable(bayan main.cpp processor.cpp config.cpp)
+
+set_target_properties(bayan PROPERTIES
     CXX_STANDARD 17
     CXX_STANDARD_REQUIRED ON
 )
 target_include_directories(bayan PRIVATE "${CMAKE_BINARY_DIR}")
-target_link_libraries(bayan PRIVATE library ${Boost_LIBRARIES})
-target_link_libraries(gtests ${GTEST_LIBRARIES} library)
-target_link_libraries(gtests ${CMAKE_THREAD_LIBS_INIT} library )
-    
-
+target_link_libraries(bayan PRIVATE boost_filesystem boost_system boost_program_options)
 target_compile_options(bayan PRIVATE -Wall -Wextra -pedantic -Werror )
-target_compile_options(library PRIVATE -Wall -Wextra -pedantic -Werror )
-target_compile_options(gtests PRIVATE -Wall -Wextra -pedantic -Werror )
+
 
 install(TARGETS bayan RUNTIME DESTINATION bin)
 

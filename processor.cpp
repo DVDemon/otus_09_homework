@@ -47,6 +47,7 @@ void homework::Processor::process(homework::Item& item){
     std::vector<std::string> files;
     std::vector<std::string> sub_dirs;
 
+    std::cout << item.dir << std::endl;
     get_files_and_dirs(item.dir,files,sub_dirs);  
     if(item.deep<Config::instance().deep()){
         for(auto s: sub_dirs) {

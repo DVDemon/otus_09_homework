@@ -2,8 +2,8 @@
 #include <string>
 #include <vector>
 
-#include <boost/filesystem.hpp>
-#include <boost/program_options.hpp>
+#include "boost/filesystem.hpp"
+#include "boost/program_options.hpp"
 
 #include "config.h"
 #include "processor.h"
@@ -52,7 +52,7 @@ auto main(int argc, char *argv[]) -> int
         {
             for (auto s : vm["mask"].as<std::vector<std::string>>())
                 homework::Config::instance().masks().insert(s);
-        }
+        } else homework::Config::instance().masks().insert("*");
 
 
 
